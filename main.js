@@ -54,12 +54,28 @@ const password3 = 'like a BOSS';
 // Being sure to do all that's outlined above, write
 // your code below!
 
+const userEmail = process.argv[2];
+const userPassword = process.argv[3];
 
+if (passwordMatches(userEmail, userPassword)) {
+  console.log('Logged In');
+}
 
-
-
-
-
+if (isRegisteredUser(userEmail)) {
+  if (!passwordMatches(userEmail, userPassword)) {
+    console.log('Password Incorrect');
+  }
+} else {
+  if (isValidEmail(userEmail) && isValidPassword(userPassword)) {
+    console.log('Signed Up');
+  }
+  else if (!isValidEmail(userEmail)) {
+    console.log('Invalid Email');
+  }
+  else if (!isValidPassword(userPassword)) {
+    console.log('Invalid Password');
+  }
+}
 
 // Solution to the back-end portion of this app.
 // Don't need to touch this, but you can check it out!
@@ -95,7 +111,6 @@ function getEmail() {
 function getPassword() {
     return process.argv[3];
 }
-
 
 // Scaffolding code to make sure testing works. No need to touch this either!
 
